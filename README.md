@@ -1,2 +1,2 @@
 # ATLAS
-E-com
+E-commerce
