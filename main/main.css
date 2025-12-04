@@ -1,0 +1,21 @@
+.carousel-container {
+    padding: 10px;
+}
+
+#displayProducts {
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: flex-start; */
+}
+
+#displayProducts {
+    flex: 0 0 calc(25% - 20px); /* Adjust the width as needed */
+    margin: 10px; /* Adjust the margin between products */
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+}
+#div{
+    flex-grow: 1;
+    flex-basis: 200;
+}

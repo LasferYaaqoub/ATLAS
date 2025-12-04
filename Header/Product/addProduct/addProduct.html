@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Add Product</title>
+    <link rel="stylesheet" href="AddProduct.css">
+</head>
+<body >
+    <div class="container">
+        <h1>Product</h1>
+        <form action="addProduct.php" method="post">
+            <label for="productname">Product name</label>
+            <input type="text" id="nameP" name="nameP" maxlength="30" placeholder="product name" required>
+
+            <label for="description">Description</label>
+            
+            <TEXTAREA id="description" name="description" placeholder="Description" ROWS="3" COLS="31"  required></TEXTAREA>
+
+            <label for="price">Price</label>
+            <input type="text" id="price" name="price" placeholder="Price" maxlength="10" required>
+
+            <label for="stock">Stock</label>
+            <input type="text" id="stock" name="stock" placeholder="Stock" maxlength="30" required>
+
+            <label for="url">Image Url</label>
+            <input type="text" id="url" name="url" placeholder="Enter URL">
+
+            <label for="category">Choose a category:</label>
+            <select id="category" name="category">
+                <option value="Supermarket">Supermarket</option>
+                <option value="health_Beauty">Health & Beauty</option>
+                <option value="Home_Hffice">Home & Office</option>
+                <option value="Phones_Tablets">Phones & Tablets</option>
+                <option value="Computing">Computing</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Baby_Products">Baby Products</option>
+                <option value="Gaming">Gaming</option>
+                <option value="Sporting_Goods">Sporting Goods</option>
+            </select>
+
+            <label for="subcategory">Choose a subcategory:</label>
+            <select id="subcategory" name="subcategory">
+                <!-- Options will be dynamically populated based on the selected category -->
+            </select>
+
+
+
+            <script>
+
+                function populateSubcategories() {
+                    var categorySelect = document.getElementById("category");
+                    var subcategorySelect = document.getElementById("subcategory");
+
+                    // Clear existing options
+                    subcategorySelect.innerHTML = "";
+
+                    // Define subcategories for each category
+                    var subcategories = {
+                        Supermarket: ["FOOD CUPBOARD", "BEVERAGES"],
+                        Health_Beauty: ["MAKE UP", "HAIR CARE"],
+                        Home_Office: ["HOME & KITCHEN", "OFFICE PRODUCTS"],
+                        Phones_Tablets: ["MOBILE PHONES", "TABLETS"],
+                        Computing: ["COMPUTERS", "DATA STORAGE"],
+                        Electronics: ["TELEVISION", "HOME AUDIO"],
+                        Fashion: ["MEN", "WOMEN"],
+                        Baby_Products: ["APPAREL & ACCESSORIES", "BABY & TODDLER TOYS"],
+                        Gaming: ["PLAYSTATION", "XBOX"],
+                        Sporting_Goods: ["CARDIO TRAINING", "ACCESSORIES"]
+                        
+                    };
+
+                    // Get selected category
+                    var selectedCategory = categorySelect.value;
+
+                    // Populate subcategory options based on selected category
+                    subcategories[selectedCategory].forEach(function(subcategory) {
+                        var option = document.createElement("option");
+                        option.text = subcategory;
+                        // option.value = subcategory.toLowerCase().replace(" ", "_");
+                        subcategorySelect.add(option);
+                    });
+                }
+
+                // Call populateSubcategories() initially to populate subcategories based on the default selected category
+                
+                populateSubcategories();
+                
+                document.getElementById("category").addEventListener("click", function() {
+                    populateSubcategories();
+                    });
+
+            
+            </script>
+
+
+            <button type="submit" name="submit">Add</button>
+
+        </form>
+
+    </div>
+</body>
+</html>

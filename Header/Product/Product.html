@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATLAS</title>
+    <link rel="stylesheet" href="../../mainCssYakoub.css">
+    <link rel="stylesheet" href="../../main/main.css">
+	<link rel="stylesheet" href="../../mainCssNoureddine.css">
+    <link rel="stylesheet" href="../../path/to/font-awesome/css/all.min.css">
+	<script src="https://use.fontawesome.com/e05f192331.js"></script>
+	<script src="../../mainJS.js"></script>
+    <script src="../../js/filter.js"></script>
+
+</head>
+<body>
+    <header>
+        <div class="logo">
+		  <a href="../../main/main.html"><img src="../../Images/logo_I.jpg" alt="logo"></a>
+        </div>
+
+        <form action="../../main/search.php" method="post" class="search-form">
+            
+            <input type="text" id="searchInput" name="searchInput" placeholder="Search products, brands and categories">
+            <button type="button" id="filterBtn"><i class="fa fa-filter"></i></button>
+            <div id="filter-box">
+                <label for="minPrice">Min Price:</label>
+                <input type="number" id="minPrice" name="minPrice" placeholder="Min Price">
+        
+                <label for="maxPrice">Max Price:</label>
+                <input type="number" id="maxPrice" name="maxPrice" placeholder="Max Price">
+        
+                <label for="category">Category:</label>
+                <select id="category" name="category">
+                    <option value="0">None</option>
+                    <option value="1">Supermarket</option>
+                    <option value="2">Health & Beauty</option>
+                    <option value="3">Home & Office</option>
+                    <option value="4">Phones & Tablets</option>
+                    <option value="5">Computing</option>
+                    <option value="6">Electronics</option>
+                    <option value="7">Fashion</option>
+                    <option value="8">Baby Products</option>
+                    <option value="9">Gaming</option>
+                    <option value="10">Sporting Goods</option>
+                </select>
+        
+                <!-- <button type="button" onclick="applyFilter()">Apply Filter</button> -->
+            </div>
+            <button type="submit" name="submit" >SEARCH</button>
+
+           
+        
+        </form>
+        
+        <script>
+            document.getElementById('filterBtn').addEventListener('click', function (event) {
+                event.stopPropagation(); // Prevents the document click event from triggering immediately
+                document.getElementById('filter-box').style.display = 'block';
+            });
+        
+            document.addEventListener('click', function (event) {
+                const filterBox = document.getElementById('filter-box');
+                if (event.target !== filterBox && !filterBox.contains(event.target)) {
+                    filterBox.style.display = 'none';
+                }
+            });
+        
+            // function applyFilter() {
+            //     // Get values from filter inputs
+            //     const minPrice = document.getElementById('minPrice').value;
+            //     const maxPrice = document.getElementById('maxPrice').value;
+            //     const category = document.getElementById('category').value;
+        
+            //     // Implement your filtering logic here
+            //     console.log('Min Price:', minPrice);
+            //     console.log('Max Price:', maxPrice);
+            //     console.log('Selected Category:', category);
+        
+            //     // Close the filter box
+            //     document.getElementById('filter-box').style.display = 'none';
+            // }
+
+
+
+        </script>
+        
+        
+
+        <nav>
+          <ul>
+            <li class="nav_icon"> <a href="../../Header/shopping-cart/shopping-cart.html"><img src="../../Images/shopping-cart.png" width="25px"/></a></li>
+            <li class="nav_icon"> <a href="../../Header/heart/favourite.html"><img src="../../Images/heart.png" /> </a></li>
+            <li class="nav_icon"><a href="../../Header/Product/Product.html"><i class="fa fa-plus"></i></a></li>
+            <li class="nav_icon"> <a href="../../Header/account/account.html"><img src="../../Images/account.png" width="25px"/></a></li>
+          </ul>
+        </nav>
+    </header>
+
+
+        <div  id="addProduct">
+            <img src="../../Images/add.png"alt="Product 1">
+            <h3>Add Product</h3>
+        </div>
+        <script>
+            document.getElementById("addProduct").addEventListener("click", function() {
+                window.location.href = "addProduct/addProduct.html";
+            });
+        </script>
+
+
+
+    <div class="carousel-container-wrapper">
+        <div class="carousel-container">
+            <div class="products" id="myArticles">
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        // Fetch article data from PHP file
+                        fetch("Product.php")
+                            .then(response => response.json())
+                            .then(data => {
+                                // Process the JSON data and display articles
+                                displayMyArticles(data);
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                            });
+                    });
+
+                    function displayMyArticles(articles) {
+                            const productList = document.getElementById("myArticles");
+                        
+                            // Loop through articles and create HTML elements for each
+                            articles.forEach(article => {
+                                // Create HTML elements for the article
+                                const articleDiv = document.createElement("div");
+                                const img = document.createElement("img");
+                                const h3 = document.createElement("h3");
+                                const p = document.createElement("p");
+                        
+                                // Set attributes and text content for each element
+                                img.src = article.image_url;
+                                h3.textContent = article.nameP;
+                                p.textContent = article.description;
+                        
+                                // Append elements to the article container
+                                articleDiv.appendChild(img);
+                                articleDiv.appendChild(h3);
+                                articleDiv.appendChild(p);
+                        
+                                // Add CSS class to style the article container
+                                articleDiv.classList.add("product");
+                        
+                                // Append article container to the product list
+                                productList.appendChild(articleDiv);
+
+                                articleDiv.addEventListener("click", function() {
+                                    // Redirect to editProduct.html with the idP parameter
+                                    window.location.href = `editProduct/editProduct.html?idP=${article.idP}`;
+                                });
+                            });
+
+                        
+                    }
+                </script>
+            </div>
+        </div>
+    </div>
+
+
+           
+</body>
+</html>

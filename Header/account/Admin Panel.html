@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATLAS</title>
+    <link rel="stylesheet" href="../../mainCssYakoub.css">
+    <link rel="stylesheet" href="../../main/main.css">
+	<link rel="stylesheet" href="../../mainCssNoureddine.css">
+    <link rel="stylesheet" href="../../path/to/font-awesome/css/all.min.css">
+	<script src="https://use.fontawesome.com/e05f192331.js"></script>
+	<script src="../../mainJS.js"></script>
+    <script src="../../js/filter.js"></script>
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+       
+    </style>
+
+</head>
+<body>
+    <header>
+        <div class="logo">
+		  <a href="../../main/main.html"><img src="../../Images/logo_I.jpg" alt="logo"></a>
+        </div>
+
+        
+        
+
+        <nav>
+          <ul>
+            <li class="nav_icon"> <a href="../../Header/shopping-cart/shopping-cart.html"><img src="../../Images/shopping-cart.png" width="25px"/></a></li>
+            <li class="nav_icon"> <a href="../../Header/heart/favourite.html"><img src="../../Images/heart.png" /> </a></li>
+            <li class="nav_icon"><a href="../../Header/Product/Product.html"><i class="fa fa-plus"></i></a></li>
+            <li class="nav_icon"> <a href="../../Header/account/account.html"><img src="../../Images/account.png" width="25px"/></a></li>
+          </ul>
+        </nav>
+    </header>
+
+    <h2>User Table</h2>
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="userTableBody">
+            <!-- User data will be dynamically inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Function to generate the HTML for a delete button
+        function generateDeleteButton(username) {
+            return `<button onclick="deleteUser('${username}')">Delete</button>`;
+        }
+
+        // Function to generate the table rows for each user
+        function generateUserRows(users) {
+            const rows = users.map(user => {
+                return `
+                    <tr>
+                        <td>${user.username}</td>
+                        <td>${user.email}</td>
+                        <td>${generateDeleteButton(user.username)}</td>
+                    </tr>
+                `;
+            });
+            return rows.join('');
+        }
+
+        // Function to delete a user
+        function deleteUser(username) {
+            // Send username to deleteUser.php using AJAX
+            fetch('delete-user.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username: username })
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Remove the user row from the table
+                    const tableBody = document.getElementById('userTableBody');
+                    const rows = tableBody.getElementsByTagName('tr');
+                    for (let i = 0; i < rows.length; i++) {
+                        const cells = rows[i].getElementsByTagName('td');
+                        if (cells.length > 0 && cells[0].textContent.trim() === username) {
+                            tableBody.removeChild(rows[i]);
+                            break; // Stop looping once the user row is removed
+                        }
+                    }
+                } else {
+                    console.error('Error deleting user:', response.statusText);
+                }
+            })
+            .catch(error => {
+                console.error('Error deleting user:', error);
+            });
+        }
+
+        // Fetch user data from index.php using AJAX
+        fetch('admin-panel.php')
+            .then(response => response.json())
+            .then(data => {
+                // Populate the user table with data
+                document.getElementById('userTableBody').innerHTML = generateUserRows(data);
+            })
+            .catch(error => {
+                console.error('Error fetching user data:', error);
+            });
+    </script>
+
+<br><br><br><br><br><br>
+<br><br><br><br><br><br>
+	<div class="footer">
+        <div class="contactus">
+            <div class="help">
+                <ul class="helplist">
+                    <li><h5>LET US HELP YOU</h5></li>
+                    <li><a href="../../plus/help/Help Center.html">Help Center</a></li>
+                    <li><a href="../../plus/help/Contact Us.html">Contact Us</a></li>
+                    <li><a href="../../plus/help/How to Shop with us.html">How to Shop with us</a></li>
+                    <li><a href="../../plus/help/Shipping and delivery.html">Shipping and delivery</a></li>
+                    <li><a href="../../plus/help/Return Policy.html">Return Policy</a></li>
+                    <li><a href="../../plus/help/Bulk Purchase.html">Bulk Purchase</a></li>
+                    <li><a href="../../plus/help/Advertise with us.html">Advertise with us</a></li>
+                    <li><a href="../../plus/help/Report a product.html">Report a product</a></li>
+                </ul>
+            </div>
+            <div class="about">
+                <ul class="aboutlist">
+                    <li><h5>ABOUT US</h5></li>
+                    <li><a href="../../plus/about/About us.html">About us</a></li>
+                    <li><a href="../../plus/about/Careers.html">Careers</a></li>
+                    <li><a href="../../plus/about/Terms and Condition.html">Terms and Condition</a></li>
+                    <li><a href="../../plus/about/Privary Policy.html">Privary Policy</a></li>
+                </ul>
+            </div>
+            <div class="international">
+                <div class="download">
+                    <div class="freeapp">
+                        <h5>DOWNLOAD THE ATLAS APP</h5>
+                    </div>
+                    <div class="appstore">
+                        <a href=""><i class="fa fa-apple"></i>Apple Store</a>
+                        <a href=""><i class="fa fa-google"></i>Google Play</a>
+                    </div>
+                </div>
+                    <div class="socials"><br><br><br>
+                        <h5>FOLLOW</h5>
+                        <ul>
+                            <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                            <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                            <li><a href=""><i class="fa fa-youtube"></i></a></li>
+                            <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

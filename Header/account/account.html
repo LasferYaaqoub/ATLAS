@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATLAS</title>
+    <link rel="stylesheet" href="../../mainCssYakoub.css">
+    <link rel="stylesheet" href="../../main/main.css">
+	<link rel="stylesheet" href="../../mainCssNoureddine.css">
+    <link rel="stylesheet" href="../../path/to/font-awesome/css/all.min.css">
+	<script src="https://use.fontawesome.com/e05f192331.js"></script>
+	<script src="../../mainJS.js"></script>
+    <script src="../../js/filter.js"></script>
+    <style>
+        #adminPanel {
+            display: none;
+        }
+    </style>
+
+
+</head>
+<body>
+    <header>
+        <div class="logo">
+		  <a href="../../main/main.html"><img src="../../Images/logo_I.jpg" alt="logo"></a>
+        </div>
+
+        
+        
+
+        <nav>
+          <ul>
+            <li class="nav_icon"> <a href="../../Header/shopping-cart/shopping-cart.html"><img src="../../Images/shopping-cart.png" width="25px"/></a></li>
+            <li class="nav_icon"> <a href="../../Header/heart/favourite.html"><img src="../../Images/heart.png" /> </a></li>
+            <li class="nav_icon"><a href="../../Header/Product/Product.html"><i class="fa fa-plus"></i></a></li>
+            <li class="nav_icon"> <a href="../../Header/account/account.html"><img src="../../Images/account.png" width="25px"/></a></li>
+          </ul>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <a href="../Product/Product.html">       
+        <div class="left-section product-section">
+            <div class="overlay"></div> </a>
+        <h1> Product Information</h1>
+        </div>
+        <div class="right-section">
+            
+            <a href="Account Information.html">        
+            <div class="account-section">
+                <div class="overlay"></div></a>
+                <h1>Account Information</h1>
+        </div>
+        
+        <a href="Admin Panel.html">      
+        <div class="admin-panel-section" id="adminPanel">
+                <div class="overlay"></div></a>
+            <h1>Admin Panel</h1>
+        </div>
+       
+        </div>
+    </div>
+      
+
+ <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Fetch product data from PHP file
+        fetch("../../main/getRole.php")
+            .then(response => response.json())
+            .then(data => {
+                // Process the JSON data and display product
+                displayAdminPanel(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+
+    function displayAdminPanel(role) {
+        // Check if the user is an admin (You should implement your own authentication logic)
+        if (role === "admin") {
+            // Show/hide adminPanelDiv based on admin status
+            const adminPanel = document.getElementById('adminPanel');
+            adminPanel.style.display = 'block';    
+        }
+    }
+</script>
+
+ 
+	<div class="footer">
+        <div class="contactus">
+            <div class="help">
+                <ul class="helplist">
+                    <li><h5>LET US HELP YOU</h5></li>
+                    <li><a href="../../plus/help/Help Center.html">Help Center</a></li>
+                    <li><a href="../../plus/help/Contact Us.html">Contact Us</a></li>
+                    <li><a href="../../plus/help/How to Shop with us.html">How to Shop with us</a></li>
+                    <li><a href="../../plus/help/Shipping and delivery.html">Shipping and delivery</a></li>
+                    <li><a href="../../plus/help/Return Policy.html">Return Policy</a></li>
+                    <li><a href="../../plus/help/Bulk Purchase.html">Bulk Purchase</a></li>
+                    <li><a href="../../plus/help/Advertise with us.html">Advertise with us</a></li>
+                    <li><a href="../../plus/help/Report a product.html">Report a product</a></li>
+                </ul>
+            </div>
+            <div class="about">
+                <ul class="aboutlist">
+                    <li><h5>ABOUT US</h5></li>
+                    <li><a href="../../plus/about/About us.html">About us</a></li>
+                    <li><a href="../../plus/about/Careers.html">Careers</a></li>
+                    <li><a href="../../plus/about/Terms and Condition.html">Terms and Condition</a></li>
+                    <li><a href="../../plus/about/Privary Policy.html">Privary Policy</a></li>
+                </ul>
+            </div>
+            <div class="international">
+                <div class="download">
+                    <div class="freeapp">
+                        <h5>DOWNLOAD THE ATLAS APP</h5>
+                    </div>
+                    <div class="appstore">
+                        <a href=""><i class="fa fa-apple"></i>Apple Store</a>
+                        <a href=""><i class="fa fa-google"></i>Google Play</a>
+                    </div>
+                </div>
+                    <div class="socials"><br><br><br>
+                        <h5>FOLLOW</h5>
+                        <ul>
+                            <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                            <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                            <li><a href=""><i class="fa fa-youtube"></i></a></li>
+                            <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

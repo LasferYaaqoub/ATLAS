@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATLAS</title>
+    <link rel="stylesheet" href="../mainCssYakoub.css">
+    <link rel="stylesheet" href="../main/main.css">
+	<link rel="stylesheet" href="../mainCssNoureddine.css">
+    <link rel="stylesheet" href="../path/to/font-awesome/css/all.min.css">
+	<script src="https://use.fontawesome.com/e05f192331.js"></script>
+	<script src="../mainJS.js"></script>
+    <script src="../js/filter.js"></script>
+<style>
+            #legalityDiv {
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                margin: 20px;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            #productDiv {
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                margin: 20px;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            #productDiv1 {
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                right: 0px;
+                margin: 20px;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            #productg img {
+                width: 20%;
+                height: 350px;
+                padding: 5px;
+                margin-right: 20px;
+                box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+                background-color: #f5f5f5;
+                padding: 20px; 
+                border-radius: 8px; 
+                margin-bottom: 20px;
+                text-align: center;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+
+            #legalityDiv {
+                display: none;
+            }
+
+            h2 {
+                color: #333;
+            }
+
+            label {
+                margin-right: 10px;
+            }
+
+            select {
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+            ul {
+                list-style: none;
+                padding: 0;
+            }
+
+            li {
+                margin-bottom: 10px;
+            }
+
+            strong {
+                margin-right: 5px;
+            }
+            #like {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        #like:hover {
+            background-color: #45a049;
+        }
+
+        /* Icon Styles */
+        #like i {
+            margin-right: 5px;
+        }
+            
+    </style>
+    </head>
+    <body>
+    <header>
+        <div class="logo">
+		  <a href="../main/main.html"><img src="../Images/logo_I.jpg" alt="logo"></a>
+        </div>
+
+        <form action="../main/search.php" method="post" class="search-form">
+            
+            <input type="text" id="searchInput" name="searchInput" placeholder="Search products, brands and categories">
+            <button type="button" id="filterBtn"><i class="fa fa-filter"></i></button>
+            <div id="filter-box">
+                <label for="minPrice">Min Price:</label>
+                <input type="number" id="minPrice" name="minPrice" placeholder="Min Price">
+        
+                <label for="maxPrice">Max Price:</label>
+                <input type="number" id="maxPrice" name="maxPrice" placeholder="Max Price">
+        
+                <label for="category">Category:</label>
+                <select id="category" name="category">
+                    <option value="0">None</option>
+                    <option value="1">Supermarket</option>
+                    <option value="2">Health & Beauty</option>
+                    <option value="3">Home & Office</option>
+                    <option value="4">Phones & Tablets</option>
+                    <option value="5">Computing</option>
+                    <option value="6">Electronics</option>
+                    <option value="7">Fashion</option>
+                    <option value="8">Baby Products</option>
+                    <option value="9">Gaming</option>
+                    <option value="10">Sporting Goods</option>
+                </select>
+        
+                <!-- <button type="button" onclick="applyFilter()">Apply Filter</button> -->
+            </div>
+            <button type="submit" name="submit" >SEARCH</button>
+
+           
+        
+        </form>
+        <script>
+            document.getElementById('filterBtn').addEventListener('click', function (event) {
+                event.stopPropagation(); // Prevents the document click event from triggering immediately
+                document.getElementById('filter-box').style.display = 'block';
+            });
+        
+            document.addEventListener('click', function (event) {
+                const filterBox = document.getElementById('filter-box');
+                if (event.target !== filterBox && !filterBox.contains(event.target)) {
+                    filterBox.style.display = 'none';
+                }
+            });
+        
+            // function applyFilter() {
+            //     // Get values from filter inputs
+            //     const minPrice = document.getElementById('minPrice').value;
+            //     const maxPrice = document.getElementById('maxPrice').value;
+            //     const category = document.getElementById('category').value;
+        
+            //     // Implement your filtering logic here
+            //     console.log('Min Price:', minPrice);
+            //     console.log('Max Price:', maxPrice);
+            //     console.log('Selected Category:', category);
+        
+            //     // Close the filter box
+            //     document.getElementById('filter-box').style.display = 'none';
+            // }
+
+
+
+        </script>
+    
+        
+        
+
+        <nav>
+          <ul>
+            <li class="nav_icon"> <a href="../Header/shopping-cart/shopping-cart.html"><img src="../Images/shopping-cart.png" width="25px"/></a></li>
+            <li class="nav_icon"> <a href="../Header/heart/favourite.html"><img src="../Images/heart.png" /> </a></li>
+            <li class="nav_icon"><a href="../Header/Product/Product.html"><i class="fa fa-plus"></i></a></li>
+            <li class="nav_icon"> <a href="../Header/account/account.html"><img src="../Images/account.png" width="25px"/></a></li>
+          </ul>
+        </nav>
+    </header>
+    
+
+
+    <div id="legalityDiv">
+        <h2>Legality</h2>
+        <label for="legalitySwitch">Is it legal?</label>
+        <select id="legalitySwitch">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
+    </div>
+    
+    <!-- Second Div (Product Information) -->
+    <div id="productDiv">
+        <div id="productg">
+            <img src="../Images/login.jpg" alt="Product 1" id="imgP">
+        </div>
+        <div class="productDiv1">
+        <h2>Product Information</h2>
+        <ul>
+            <li><strong>ID:</strong> <span id="idPr">123</span></li>
+            <li><strong>Name:</strong> <span id="namePr">Product Name</span></li>
+            <li><strong>Description:</strong> <span id="descriptionPr">Product Description</span></li>
+            <li><strong>Price:</strong> $<span id="pricePr">19.99</span></li>
+            <li><strong>Stock:</strong> <span id="stockPr">50</span></li>
+            <li><strong>Created At:</strong> <span id="createdAt">2024-03-04</span></li>
+            <li><strong>Updated At:</strong> <span id="updatedAt">2024-03-04</span></li>
+            <li><button id="like"><img src="../Images/heart.png" />&nbsp;&nbsp;Like</button></li>
+        </ul>
+        </ul>
+        </div>   
+            
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Fetch product data from PHP file
+                fetch("showProduct.php")
+                    .then(response => response.json())
+                    .then(data => {
+                        // Process the JSON data and display product
+                        displayProduct(data);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+        
+            function displayProduct(product) {
+                const productDiv = document.getElementById("productDiv");
+                const productg = document.getElementById("productg");
+                const productDiv1 = document.getElementsByClassName("productDiv1");
+                const img = document.getElementById("imgP");
+                const idP = document.getElementById("idPr");
+                const nameP = document.getElementById("namePr");
+                const description = document.getElementById("descriptionPr");
+                const price = document.getElementById("pricePr");
+                const stock = document.getElementById("stockPr");
+                const createdAt = document.getElementById("createdAt");
+                const updatedAt = document.getElementById("updatedAt");
+                const legalitySwitch = document.getElementById("legalitySwitch");
+                
+                            
+        
+                // Set attributes and text content for each element
+                img.src = product.image_url;
+                idP.textContent = product['idP'];
+                nameP.textContent = product['nameP'];
+                description.textContent = product['description'];
+                price.textContent = product['price'];
+                stock.textContent = product['stock'];
+                createdAt.textContent = product['created_at'];
+                updatedAt.textContent = product['updated_at'];
+                if (product['legal'] === 1) {
+                    // Set the value of the select element to "yes"
+                    legalitySwitch.value = "yes";
+                } else {
+                    // Set the value of the select element to "no"
+                    legalitySwitch.value = "no";
+                }
+        
+                // Append elements to the appropriate parent elements
+                
+                productg.appendChild(img);
+                
+                productDiv1.appendChild(idP);
+                productDiv1.appendChild(nameP);
+                productDiv1.appendChild(description);
+                productDiv1.appendChild(price);
+                productDiv1.appendChild(stock);
+                productDiv1.appendChild(createdAt);
+                productDiv1.appendChild(updatedAt);
+
+                productDiv.appendChild(productg);
+                productDiv.appendChild(productDiv1);
+
+            }
+        </script>
+
+        <!-- like  -->
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Fetch product data from PHP file
+                fetch("showProduct.php")
+                    .then(response => response.json())
+                    .then(data => {
+                        // Process the JSON data and display product
+                        setLike(data);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            });
+
+            function setLike(product){
+
+                const like_button = document.getElementById("like");
+                like_button.addEventListener("click", function() {
+                    
+
+                    // Send the idP to likeProduct.php
+                    fetch(`likeProduct.php?idPL=${product['idP']}`, {
+                        method: 'POST', // or 'GET' depending on your requirement
+                        // You can add additional options like headers, body, etc. if needed
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json(); // assuming like.php returns JSON
+                    })
+                    .then(data => {
+                        console.log('Like successful:', data);
+                        // Handle the response if needed
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        // Handle errors if any
+                    });
+                });
+
+            }
+
+            
+
+
+        </script>
+        
+    </div>
+
+        
+
+
+    
+
+ <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Fetch product data from PHP file
+        fetch("getRole.php")
+            .then(response => response.json())
+            .then(data => {
+                // Process the JSON data and display product
+                displayLegality(data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    });
+
+    function displayLegality(role) {
+        // Check if the user is an admin (You should implement your own authentication logic)
+        // const isMod = role; // Change this based on your authentication logic
+        if (role === "mod") {
+            // Show/hide legalityDiv based on admin status
+            const legalityDiv = document.getElementById('legalityDiv');
+            legalityDiv.style.display = 'block';
+
+            const legalitySwitch = document.getElementById('legalitySwitch');
+            
+
+
+
+            // Add an event listener for the 'change' event
+            legalitySwitch.addEventListener('change', function() {
+                // Get the selected value
+                const selectedValue = legalitySwitch.value;
+                
+                // Perform actions based on the selected value
+                if (selectedValue === 'yes') {
+                    // Do something when 'Yes' is selected
+                    // window.location.href =`setLegalityProduct.php?legality${"yes"}`;
+
+                    // Create a FormData object to send data with the request
+                    const formData = new FormData();
+                    formData.append('legality', 1);
+
+                    // Make a POST request to legal.php with the selected value
+                    fetch('setLegalityProduct.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        // Handle the response from legal.php if needed
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                    
+                } else if (selectedValue === 'no') {
+                    // Do something when 'No' is selected
+                    const formData = new FormData();
+                    formData.append('legality', 0);
+
+                    // Make a POST request to legal.php with the selected value
+                    fetch('setLegalityProduct.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        // Handle the response from legal.php if needed
+                        console.log(data);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                }
+
+                
+            });
+        }
+    }
+
+
+
+
+</script>
+
+
+	<div class="footer">
+        <div class="contactus">
+            <div class="help">
+                <ul class="helplist">
+                    <li><h5>LET US HELP YOU</h5></li>
+                    <li><a href="../plus/help/Help Center.html">Help Center</a></li>
+                    <li><a href="../plus/help/Contact Us.html">Contact Us</a></li>
+                    <li><a href="../plus/help/How to Shop with us.html">How to Shop with us</a></li>
+                    <li><a href="../plus/help/Shipping and delivery.html">Shipping and delivery</a></li>
+                    <li><a href="../plus/help/Return Policy.html">Return Policy</a></li>
+                    <li><a href="../plus/help/Bulk Purchase.html">Bulk Purchase</a></li>
+                    <li><a href="../plus/help/Advertise with us.html">Advertise with us</a></li>
+                    <li><a href="../plus/help/Report a product.html">Report a product</a></li>
+                </ul>
+            </div>
+            <div class="about">
+                <ul class="aboutlist">
+                    <li><h5>ABOUT US</h5></li>
+                    <li><a href="../plus/about/About us.html">About us</a></li>
+                    <li><a href="../plus/about/Careers.html">Careers</a></li>
+                    <li><a href="../plus/about/Terms and Condition.html">Terms and Condition</a></li>
+                    <li><a href="../plus/about/Privary Policy.html">Privary Policy</a></li>
+                </ul>
+            </div>
+            <div class="international">
+                <div class="download">
+                    <div class="freeapp">
+                        <h5>DOWNLOAD THE ATLAS APP</h5>
+                    </div>
+                    <div class="appstore">
+                        <a href=""><i class="fa fa-apple"></i>Apple Store</a>
+                        <a href=""><i class="fa fa-google"></i>Google Play</a>
+                    </div>
+                </div>
+                    <div class="socials"><br><br><br>
+                        <h5>FOLLOW</h5>
+                        <ul>
+                            <li><a href=""><i class="fa fa-facebook"></i></a></li>
+                            <li><a href=""><i class="fa fa-instagram"></i></a></li>
+                            <li><a href=""><i class="fa fa-youtube"></i></a></li>
+                            <li><a href=""><i class="fa fa-twitter"></i></a></li>
+                        </ul>
+                    </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

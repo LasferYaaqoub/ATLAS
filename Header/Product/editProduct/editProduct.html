@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Edit Product</title>
+    <link rel="stylesheet" href="editProduct.css">
+</head>
+<body >
+    <div class="container">
+        <h1>Product</h1>
+        <form action="editProduct.php" method="post">
+            <label for="productname">Product name</label>
+            <input type="text" id="nameP" name="nameP" maxlength="30" placeholder="product name" required>
+
+            <label for="description">Description</label>
+            
+            <TEXTAREA id="description" name="description" placeholder="Description" ROWS="3" COLS="31"  required></TEXTAREA>
+
+            <label for="price">Price</label>
+            <input type="text" id="price" name="price" placeholder="Price" maxlength="10" required>
+
+            <label for="stock">Stock</label>
+            <input type="text" id="stock" name="stock" placeholder="Stock" maxlength="30" required>
+
+            <label for="url">Image Url</label>
+            <input type="text" id="url" name="url" placeholder="Enter URL">
+
+            <button type="submit" name="submit">Add</button>
+            <p id="p"></p>
+        </form>
+
+        
+
+        <script>
+            // Get the URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+
+            // Get the product ID from the 'id' parameter
+            const productId = urlParams.get('idP');
+
+            // Create a FormData object and append the value
+            const formData = new FormData();
+            formData.append('idP', productId);
+
+            // Send a POST request to file.php
+            fetch('getData.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Response from getData.php:', data);
+                // Handle the response as needed
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        </script>
+
+    </div>
+</body>
+</html>
+---
+<style>
+    /* Style for the product container */
+    .products {
+        display: flex; /* Use flexbox */
+        flex-wrap: wrap; /* Allow wrapping */
+        justify-content: space-between; /* Distribute items evenly */
+  flex-direction: column;
+  align-items: center;
+    }
+
+    /* Style for each product */
+    .product {
+        width: calc(33% - 10px); /* Set width for each product */
+        margin-bottom: 20px; /* Add margin between products */
+        /* Add additional styling as needed */
+    }
+
+    /* Responsive styling for smaller screens */
+    @media screen and (max-width: 768px) {
+        .product {
+            width: calc(50% - 10px); /* Adjust width for smaller screens */
+        }
+    }
+
+    @media screen and (max-width: 480px) {
+        .product {
+            width: 100%; /* Full width for extra small screens */
+        }
+    }
+</style>
+    

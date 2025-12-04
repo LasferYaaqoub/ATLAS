@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body >
+    <div class="container">
+        <h1>Login</h1>
+        <form action="login.php" method="post">
+            <label for="username">User name</label>
+            <input type="text" id="username" name="username" maxlength="30" placeholder="User name" required>
+
+            <label for="code">Password</label>
+            <input type="password" id="password" name="password" pattern="[A-Za-z0-9]*" placeholder="************" maxlength="30" required>
+
+            <button type="submit" name="submit">Login</button>
+
+        </form>
+        <p id="goToSignup" ><a href="../signup/signup.html">Create account</a></p>
+
+    </div>
+</body>
+</html>
